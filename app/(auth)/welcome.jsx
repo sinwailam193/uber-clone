@@ -5,10 +5,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Swiper from "react-native-swiper";
 
 import { onboarding } from "../../constant";
+import { CustomButton } from "../../components";
 
 export default function AuthWelcome() {
     const swiperRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
+    const isLastSlide = activeIndex === onboarding.length - 1;
 
     return (
         <SafeAreaView className="h-full flex items-center justify-between bg-white">
@@ -52,6 +54,15 @@ export default function AuthWelcome() {
                     </View>
                 ))}
             </Swiper>
+            <CustomButton
+                title={isLastSlide ? "Get Started" : "Next"}
+                onPress={() =>
+                    isLastSlide
+                        ? router.replace("/(auth)/sign-up")
+                        : swiperRef.current?.scrollBy(1)
+                }
+                className="w-11/12 mt-10 mb-4"
+            />
         </SafeAreaView>
     );
 }
