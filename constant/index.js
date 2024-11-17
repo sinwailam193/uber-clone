@@ -98,3 +98,8 @@ export const onboarding = [
 export const data = {
     onboarding,
 };
+
+export const OS_SYSTEM = {
+    ios: "ios",
+    android: "android",
+};
